@@ -2,21 +2,21 @@
 
 /**
  * _printf - Printf function
- * @format: format
+ * @format: character string
  * Return: Printed bytes
  */
 
 int _printf(const char *format, ...)
 {
-	int sum = 0
-	va_list list;
+	int sum = 0;
+	va_list ap;
 	char *p, *start;
 	params_t params = PARAMS_INIT;
 
 	if (format == NULL)
 		return (-1);
 
-	va_start(list, format);
+	va_start(ap, format);
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (p = (char *)format; *p; p++)
 	{
-		init_params(&params, list);
+		init_params(&params, ap);
 		if (*p != '%')
 		{
 			sum += _putchar(*p);
@@ -36,8 +36,8 @@ int _printf(const char *format, ...)
 		{
 			p++; /* next char */
 		}
-		p = get_width(p, &params, list);
-		p = get_precision(p, &params, list);
+		p = get_width(p, &params, ap);
+		p = get_precision(p, &params, ap);
 		if (get_modifier(p, &params))
 			p++;
 		if (!get_specifier(p))
@@ -45,10 +45,10 @@ int _printf(const char *format, ...)
 params.l_modifier || params.h_modifier
 ? p - 1 : 0);
 		else
-			sum += get_print_func(p, list,
+			sum += get_print_func(p, ap,
 &params);
 	}
-	_putchar(BUF_FLUSH);	
-	va_end(list);
-	return (sum);
+_putchar(BUF_FLUSH);
+va_end(ap);
+return (sum);
 }
