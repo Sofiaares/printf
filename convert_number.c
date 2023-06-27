@@ -1,5 +1,5 @@
 #include "main.h"
-
+/****** PRINT HEXX NUM IN LOWER ******/
 /**
  * print_hex - print unsigned hex number in lowercase
  * @ap: argument pointer
@@ -27,6 +27,7 @@ int print_hex(va_list ap, params_t *params)
 	params->unsign = 1;
 	return (c += print_number(str, params));
 }
+/****** PRINT HEXX NUM IN UPPER ******/
 /**
  * print_HEX - print unsigned hex number in uppercase
  * @ap: argument pointer
@@ -54,6 +55,7 @@ int print_HEX(va_list ap, params_t *params)
         params->unsign = 1;
         return (c += print_number(str, params));
 }
+/****** PRINT BINARY ******/
 /**
  * print_binary - print unsigned binary number
  * @ap: argument pointer
@@ -73,6 +75,7 @@ int print_binary(va_list ap, params_t *params)
         params->unsign = 1;
         return (c += print_number(str, params));
 }
+/****** PRINT UNSIGNED NUMBER IN OCTAL ******/
 /**
  * print_octal - print unsigned octal numbers
  * @ap: argument pointer
